@@ -5,9 +5,11 @@ const Cart = (props) => {
     
     let totalPrice= 0;
     let shipping = 0;
+    let quantity = 0;
     
     for ( const product of cart) {
-        totalPrice = totalPrice + product.price;
+        quantity = quantity + product.quantity;
+        totalPrice = totalPrice + product.price * product.quantity;
         shipping = shipping + product.shipping;
         }
     const tax = parseFloat((totalPrice * 0.1).toFixed(2));

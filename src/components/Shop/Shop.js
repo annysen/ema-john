@@ -15,10 +15,18 @@ const Shop = () => {
     
     useEffect(() => {
         const storedCart = getStoredCart();
+        const savedCart = [];
         for( const id in storedCart){
-            const addedProducts = products.find(product => product.id === id)
-            console.log(addedProducts);        }
-    },[])
+            const addedProduct = products.find(product => product.id === id);
+            if(addedProduct){
+                const quantity = storedCart[id];
+                addedProduct.quantity = quantity;
+                savedCart.push(addedProduct);
+            }
+            setCart(savedCart);
+
+            console.log(addedProduct);        }
+    },[products])
 
     // add click handeler for add to cart 
     const addToCartHandeler = (product) => {
